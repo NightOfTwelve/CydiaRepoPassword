@@ -19,13 +19,13 @@ if (!file_exists($request) && $extension =! "deb") {
 if (!file_exists($request) && $extension == "deb") {
 	$dirname = pathinfo($request, PATHINFO_DIRNAME);
 	$filename = pathinfo($request, PATHINFO_FILENAME);
-	if(!preg_grep("/^$filename/", scandir($dirname))){
+	if (!preg_grep("/^$filename/", scandir($dirname))) {
 		error("404 Not Found");
 		return;
 	}
 }
 
-if(!startsWith(realpath($request),realpath(".")){
+if (!startsWith(realpath($request),realpath("."))) {
 	error("403 Stop!!! Hacking!!!!");
 	return;
 }
@@ -42,7 +42,7 @@ if (file_exists("auth/$ip")) {
 		header("Content-Disposition: attachment; filename=\"$request\"");
 		header("Content-Length: ".filesize($request));
 	}
-	switch($uniquepackages){
+	switch($uniquepackages) {
 		case TRUE:
 			echo file_get_contents($request.".".file_get_contents("auth/$ip"));
 			break;
@@ -64,7 +64,7 @@ function error($exit) {
 
 function checkUDID($username) {
 	global $checkudids, $udids, $udid;
-	if(!$checkudids){
+	if (!$checkudids) {
 		return TRUE; 
 	}
 	return array_key_exists($username, $udids) && in_array(hash('sha256', $udid), $udids[$username]);

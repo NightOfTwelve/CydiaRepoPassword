@@ -1,12 +1,12 @@
 <?php
 
 $users = array(
-	"user1" => "b747047a1e4c9442afd96508cf8603e7ef92ed209a473cb58943bc604c6719b8",
-	"user2" => "b747047a1e4c9442afd96508cf8603e7ef92ed209a473cb58943bc604c6719b8"
+    "user1" => "b747047a1e4c9442afd96508cf8603e7ef92ed209a473cb58943bc604c6719b8",
+    "user2" => "b747047a1e4c9442afd96508cf8603e7ef92ed209a473cb58943bc604c6719b8"
 );
 //add users in the users array. keys are usernames, values are twice sha256'd passwords.
 
-$checkudids = FALSE;
+$checkudids = TRUE;
 //if this is set to yes, errrr will check users against specified udids in $udids
 
 $udids = array(

@@ -1,26 +1,27 @@
-#errrr
+# Cydia Repo Password
 
-password protected repo script
+Password protected repo script
 
-![LEAK ENDER](http://i.imgur.com/pM2z1GN.png)
+# Setup
 
-##setup
+* Make a regular APT repo.
+* Edit your nginx config (usually in `/etc/nginx/nginx.conf`) add this to the main server block:
+```
+# Repo password
+autoindex off;
+rewrite ^/secretrepo/.+\.deb$ /secretrepo/main.php?request=$request_filename;
+```
 
-* Make a regular apt repo.
-* Edit `.htaccess` and change `/beta/` with the directory (under the website directory) your repo is in. (e.g. if your repo is at `https://goeo.pink/wowsupersecretrepo` make it `/wowsupersecretrepo/`)
-* Edit `config.php`, what you should do are //commented
-* Edit your `Packages` file, add `Depiction: https://link-to-your-re.po/depiction.php` to every package. If your package already has a depiction, make it `https://link-to-your-re.po/depiction.php?iframe=<olddepiction>`
-* Move all the files to the repo directory
-* Create an `auth` directory at the root of your repo
+where `secretrepo` is the directory under the website directory (e.g. if your repo is at `https://goeo.pink/wowsupersecretrepo` make it `/wowsupersecretrepo/`).
+
+* Edit `config.php`, what you should do are commented.
+* Edit your `Packages` file, add `Depiction: https://link-to-your-re.po/depiction.php` to every package. If your package already has a depiction, make it `https://link-to-your-re.po/depiction.php?iframe=<olddepiction>`.
+* Move all the files to the repo directory.
+* Create an `auth` directory at the root of your repo.
 * Make whoever runs php able to write to auth, you can usually 
-`chown $(whoami):www-data; chmod u+rwx,g+rwx,o+rx-w`
+`chown $(whoami):webserver; chmod u+rwx,g+rwx,o+rx-w`.
 
-##todo
-
-* google authenticator 2/1fa support
-* different users for each package
-
-##license
+# License
 ```
 This is free and unencumbered software released into the public domain.
 
